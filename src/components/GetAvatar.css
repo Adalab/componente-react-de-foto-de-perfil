@@ -1,0 +1,29 @@
+.get-avatar {
+  display: flex;
+  margin: 30px 0;
+}
+.get-avatar__trigger {
+  background: deeppink;
+  border-radius: 15px;
+  border: 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  font-family: sans-serif;
+  font-size: 20px;
+  padding: 10px 20px;
+  width: 250px;
+}
+.get-avatar__upload-field {
+  display: none;
+}
+.get-avatar__preview {
+  background-color: #fff;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 1px solid #ccc;
+  height: 50px;
+  margin-left: 15px;
+  width: 50px;
+}
