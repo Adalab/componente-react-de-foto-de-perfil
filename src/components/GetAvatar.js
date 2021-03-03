@@ -12,7 +12,7 @@ class GetAvatar extends React.Component {
     this.fr = new FileReader();
 
     // creamos un React.createRef porque React no gestiona los <input type="file" /> por ello tenemos que gestionarlo por nuestra cuenta
-    this.myFileField = React.createRef();
+    this.myFileField = React.createRef(); // this.myFileField = document.querySelecto('input')
 
     // estos son los bind normales que siempre ponemos
     this.uploadImage = this.uploadImage.bind(this);
@@ -33,15 +33,19 @@ class GetAvatar extends React.Component {
     // este objeto no tiene información privada del ordenador de la usuaria, por ejemplo no tenemos información de la carpeta en la que está la imagen
     console.log('El primero de los ficheros elegidos es', ev.currentTarget.files[0]);
 
-    // guardo el primer fichero en myFile
-    const myFile = ev.currentTarget.files[0];
+    // compruebo si la usuaria ha elegido al menos un fichero
+    if (ev.currentTarget.files.length > 0) {
+      // guardo el primer fichero en myFile
+      const myFile = ev.currentTarget.files[0];
 
-    // añado un evento load al manejador de ficheros
-    // por qué añado un evento, pues porque esto es una acción asíncrona, imaginemos que el fichero pesa 5 Gb, el navegador puede tardar unos cuantos segundos en cargar y procesar el fichero, por eso le decimos "navegador, cuando termines de cargar el fichero me ejecutas el método this.image"
-    this.fr.addEventListener('load', this.getImage);
+      // añado un evento load al manejador de ficheros
+      // por qué añado un evento, pues porque esto es una acción asíncrona, imaginemos que el fichero pesa 5 Gb, el navegador puede tardar unos cuantos segundos en cargar y procesar el fichero, por eso le decimos "navegador, cuando termines de cargar el fichero me ejecutas el método this.image"
+      this.fr.addEventListener('load', this.getImage);
 
-    // le digo al manejador de ficheros que maneje, que cargue el fichero
-    this.fr.readAsDataURL(myFile);
+      // le digo al manejador de ficheros que maneje, que cargue el fichero
+      this.fr.readAsDataURL(myFile);
+    }
+    // si la usuaria no ha elegido ningún fichero y ha puslado en cerrar la ventana de nuestro ordenador, no hago nada
   }
 
   getImage() {
