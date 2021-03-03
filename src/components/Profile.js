@@ -1,13 +1,14 @@
-import React, {Component} from "react";
+import React from 'react';
 import PropTypes from 'prop-types';
-import './Profile.css';
+import defaultAvatar from '../images/defaultAvatar.png';
+import '../stylesheets/Profile.css';
 
-class Profile extends Component {
+class Profile extends React.Component {
   render() {
-    const {avatar} = this.props;
+    const avatar = this.props.avatar === '' ? defaultAvatar : this.props.avatar;
     return (
       <div className="profile">
-        <div className="profile__avatar" style={{backgroundImage: `url(${avatar})`}}></div>
+        <div className="profile__avatar" style={{ backgroundImage: `url(${avatar})` }}></div>
       </div>
     );
   }
