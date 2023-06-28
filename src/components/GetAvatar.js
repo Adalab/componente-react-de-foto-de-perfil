@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import defaultAvatar from '../images/defaultAvatar.png';
-import '../stylesheets/GetAvatar.css';
+import '../styles/GetAvatar.css';
 
-function GetAvatar(props) {
+function GetAvatar({avatar=defaultAvatar, updateAvatar, text='Get avatar!'}) {
   // creamos una propiedad de la clase que es la que vamos a usar en varios métodos para cargar la imagen
   // esto es un manejador de ficheros
   const fr = new FileReader();
@@ -55,18 +55,17 @@ function GetAvatar(props) {
 
     // aquí hago lifting con los datos del fichero
     // lo que haga el componente madre con esta información es otro problema diferente
-    props.updateAvatar(image);
+    updateAvatar(image);
   };
 
-  const avatar = props.avatar === '' ? defaultAvatar : props.avatar;
   return (
     <div className="get-avatar">
       <label className="get-avatar__label">
-        Get avatar!
+        {text}
         <input
           type="file"
           ref={myFileField}
-          className="get-avatar__upload-field"
+          style={{ display: 'none' }}
           onChange={uploadImage}
         />
       </label>
@@ -80,8 +79,9 @@ function GetAvatar(props) {
 }
 
 GetAvatar.propTypes = {
-  avatar: PropTypes.string.isRequired,
+  avatar: PropTypes.string,
   updateAvatar: PropTypes.func.isRequired,
+  text: PropTypes.string
 };
 
 export default GetAvatar;
